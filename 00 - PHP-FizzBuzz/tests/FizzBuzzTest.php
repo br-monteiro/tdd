@@ -22,4 +22,9 @@ class FizzBuzzTest extends PHPUnit
     {
         $this->assertEquals('array', gettype($this->fizzBuzz->getResults()), "Should be returned a array type");
     }
+
+    public function testResultIsFizz()
+    {
+        $this->assertEquals('Fizz', $this->fizzBuzz->isFizz(3), "Should be returned 'Fizz'");
+    }
 }
