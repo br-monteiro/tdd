@@ -27,4 +27,9 @@ class FizzBuzzTest extends PHPUnit
     {
         $this->assertEquals('Fizz', $this->fizzBuzz->isFizz(3), "Should be returned 'Fizz'");
     }
+
+    public function testResultIsBuzz()
+    {
+        $this->assertEquals('Buzz', $this->fizzBuzz->isBuzz(5), "Should be returned 'Buzz'");
+    }
 }
