@@ -42,4 +42,12 @@ class FizzBuzzTest extends PHPUnit
     {
         $this->assertEquals(false, $this->fizzBuzz->isBuzz(4), "Should be returned false");
     }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testThrowExceptionIfNumberIsLessOrEqualOne()
+    {
+        $this->fizzBuzz->setQuantity(1);
+    }
 }
