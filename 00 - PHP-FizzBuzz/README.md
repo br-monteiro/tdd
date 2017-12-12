@@ -8,7 +8,7 @@ Uma simples biblioteca para o jogo Fizz Buzz. O que temos por aqui:
 ### Mas... como usar?
 
 Para usar, basta instanciar a class __FizzBuzz__. No construtor da class é possível setar a quantidade de resultados desejados, que deve ser um número inteiro maior que que __1__. Por padrão, a quantidade é __15__.
-F
+
 ```php
 $fb = new FizzBuzz(); // por padrão é 15
 $fbCustom = new FizzBuzz(100); // setando a quantidade para 100
@@ -24,7 +24,7 @@ $fb = new FizzBuzz();
 $fb->setQuantity(50)->run();
 ```
 
-### E os resultados, como eu tenho?
+### E os resultados, como eu obtenho?
 
 Para obter os resultados da execução, basta executar os métodos __getResults(), getResultsAsJson() e getResultsAsObject()__.
 
