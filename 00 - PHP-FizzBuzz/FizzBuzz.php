@@ -14,6 +14,7 @@ class FizzBuzz
 
     public function run(): FizzBuzz
     {
+        $this->results = [];
         for ($i = 1; $i <= $this->quantity; $i++) {
             $fizz = $this->isFizz($i);
             $buzz = $this->isBuzz($i);
