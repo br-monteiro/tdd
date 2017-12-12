@@ -30,7 +30,7 @@ class FizzBuzzTest extends PHPUnit
 
     public function testResultOfFizzIsFalse()
     {
-        $this->assertEquals(false, $this->fizzBuzz->isFizz(2), "Should be returned false");
+        $this->assertEquals(null, $this->fizzBuzz->isFizz(2), "Should be returned null");
     }
 
     public function testResultIsBuzz()
@@ -40,7 +40,7 @@ class FizzBuzzTest extends PHPUnit
 
     public function testResultOfBuzzIsFalse()
     {
-        $this->assertEquals(false, $this->fizzBuzz->isBuzz(4), "Should be returned false");
+        $this->assertEquals(null, $this->fizzBuzz->isBuzz(4), "Should be returned null");
     }
 
     /**
