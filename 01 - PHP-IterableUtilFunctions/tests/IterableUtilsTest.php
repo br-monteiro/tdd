@@ -60,7 +60,9 @@ class IterabkeUtilsTest extends PHPUnit
     public function testReturnArrayWithNullInContentsWhenNoHaveReturnOnCallback()
     {
         $arrExepected = [null, null, null, null, null];
-        $arrResult = \App\Utils\IterableUtils::map($this->arrayNumbersMock, function($value) {});
+        $arrResult = \App\Utils\IterableUtils::map($this->arrayNumbersMock, function($value) {
+                // empty
+            });
 
         $this->assertEquals($arrExepected, $arrResult, 'It should be return an array with null values when no have return on callback');
     }
@@ -69,9 +71,44 @@ class IterabkeUtilsTest extends PHPUnit
     {
         $arrExepected = [];
         $arrResult = \App\Utils\IterableUtils::map([], function($value) {
-            return $value;
-        });
+                return $value;
+            });
 
         $this->assertEquals($arrExepected, $arrResult, 'It should be return an empty array');
+    }
+
+    public function testSmokeTestForFindMethod()
+    {
+        $this->assertEquals(true, method_exists(\App\Utils\IterableUtils::class, 'find'), 'It should be return true if the find method exists');
+    }
+
+    public function testReturnAnResultIfTheConditionOfCallbackIsTruly()
+    {
+        $exepected = 'dolor';
+        $result = \App\Utils\IterableUtils::find($this->arrayWordsMock, function($value) {
+                return $value === 'dolor';
+            });
+
+        $this->assertEquals($exepected, $result, 'It should be return "dolor"');
+    }
+
+    public function testReturnNullWhenTheConditionIsNotSatisfactory()
+    {
+        $exepected = null;
+        $result = \App\Utils\IterableUtils::find($this->arrayWordsMock, function($value) {
+                return $value === 'XXX';
+            });
+
+        $this->assertEquals($exepected, $result, 'It should be return null when the condition is not satisfactory');
+    }
+
+    public function testReturnNullWhenAnEmptyArrayIsPassed()
+    {
+        $exepected = null;
+        $result = \App\Utils\IterableUtils::find([], function($value) {
+                return $value === 'XXX';
+            });
+
+        $this->assertEquals($exepected, $result, 'It should be return null when an empty array is passed');
     }
 }
