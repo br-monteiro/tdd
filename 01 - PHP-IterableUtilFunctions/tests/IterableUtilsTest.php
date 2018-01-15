@@ -61,7 +61,7 @@ class IterabkeUtilsTest extends PHPUnit
     {
         $arrExepected = [null, null, null, null, null];
         $arrResult = \App\Utils\IterableUtils::map($this->arrayNumbersMock, function($value) {
-                // empty
+                // no have return
             });
 
         $this->assertEquals($arrExepected, $arrResult, 'It should be return an array with null values when no have return on callback');
@@ -110,5 +110,37 @@ class IterabkeUtilsTest extends PHPUnit
             });
 
         $this->assertEquals($exepected, $result, 'It should be return null when an empty array is passed');
+    }
+
+    public function testSmokeTestForFilterMethod()
+    {
+        $this->assertEquals(true, method_exists(\App\Utils\IterableUtils::class, 'filter'), 'It should be return true if the filter method exists');
+    }
+
+    public function testReturnFilteredArrayAccordingCallback()
+    {
+        $exepected = [1, 3, 5];
+        $result = \App\Utils\IterableUtils::filter($this->arrayNumbersMock, function($value) {
+                return $value % 2 != 0;
+            });
+
+        $this->assertEquals($exepected, $result, 'It should be return an array with odd numbers');
+
+        $exepected = ['lorem', 'ipsum'];
+        $result = \App\Utils\IterableUtils::filter($this->arrayWordsMock, function($value) {
+                return (bool) preg_match('/.*m$/', $value);
+            });
+
+        $this->assertEquals($exepected, $result, 'It should be return an array with lorem, ipsum values');
+    }
+
+    public function testReturnAnEmptyArrayWhenTheCallbackNoHaveReturn()
+    {
+        $exepected = [];
+        $result = \App\Utils\IterableUtils::filter($this->arrayNumbersMock, function($value) {
+                // no have return
+            });
+
+        $this->assertEquals($exepected, $result, 'It should be return an array with odd numbers');
     }
 }
