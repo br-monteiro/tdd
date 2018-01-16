@@ -38,4 +38,17 @@ class IterableUtils
 
         return $arrResult;
     }
+
+    public static function only(array $arr, callable $callback): bool
+    {
+        $arrResult = [];
+
+        foreach ($arr as $index => $value) {
+            if ($callback($value, $index) === true) {
+                $arrResult[] = $index;
+            }
+        }
+
+        return count($arrResult) === 1;
+    }
 }
