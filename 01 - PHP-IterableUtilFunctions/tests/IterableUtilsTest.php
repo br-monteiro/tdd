@@ -164,6 +164,61 @@ class IterabkeUtilsTest extends PHPUnit
 
         $result = IterableUtils::filter($this->arrayNumbersMock, $callback);
 
-        $this->assertEquals($exepected, $result, 'It should be return an array with odd numbers');
+        $this->assertEquals($exepected, $result, 'It should be return an empty array');
+    }
+
+    public function testSmokeTestForOnlyMethod()
+    {
+        $this->assertEquals(true, method_exists(IterableUtils::class, 'only'), 'It should be return true if the only method exists');
+    }
+
+    public function testReturnTrueIfValueExistsOnceInArray()
+    {
+        $exepected = true;
+        $callback = function($value) {
+            return $value === 'c';
+        };
+
+        $result = IterableUtils::only($this->arrayLettersMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return true if the condition of callback is accepted');
+    }
+
+    public function testReturnFalseIfValueNotExistsOnceInArray()
+    {
+        $exepected = false;
+        $callback = function($value) {
+            return $value === 'Not Exists';
+        };
+
+        $result = IterableUtils::only($this->arrayLettersMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return false if the condition of callback is not accepted');
+    }
+
+    public function testReturnFalseIfInArrayContainsOneOrMoreValuesEqual()
+    {
+        $exepected = false;
+        $arrWithTwoC = $this->arrayLettersMock;
+        $arrWithTwoC[] = 'c';
+        $callback = function($value) {
+            return $value === 'c';
+        };
+
+        $result = IterableUtils::only($arrWithTwoC, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return false if exists one or more values equal in array');
+    }
+
+    public function testReturnFalseWhenTheCallbackNoHaveReturn()
+    {
+        $exepected = false;
+        $callback = function($value) {
+            // no have return
+        };
+
+        $result = IterableUtils::only($this->arrayLettersMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return false when in callback no have returns');
     }
 }
