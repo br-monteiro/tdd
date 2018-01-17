@@ -221,4 +221,76 @@ class IterabkeUtilsTest extends PHPUnit
 
         $this->assertEquals($exepected, $result, 'It should be return false when in callback no have returns');
     }
+
+    public function testSmokeTestForInAllMethod()
+    {
+        $this->assertEquals(true, method_exists(IterableUtils::class, 'inAll'), 'It should be return true if the inAll method exists');
+    }
+
+    public function testReturnFalseWhenAnEmptyArrayIsPassedByParameter()
+    {
+        $exepected = false;
+        $arrMock = [];
+
+        $callback = function($value) {
+            return $value === 'test';
+        };
+
+        $result = IterableUtils::inAll($arrMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return false when an empty array is passed by parameter');
+    }
+
+    public function testReturnFalseTheCallbackPassedByParameterInInAllNoHaveReturn()
+    {
+        $exepected = false;
+
+        $callback = function($value) {
+            // no have return
+        };
+
+        $result = IterableUtils::inAll($this->arrayNumbersMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return false when the callback no have return');
+    }
+
+    public function testReturnTrueIfTheValueExistsInAllElementsOfArrayAccordingCallbackConditions()
+    {
+        $exepected = true;
+        $arrMock = [];
+        for ($i = 0; $i < 5; $i++) {
+            $object = new \stdClass();
+            $object->attribA = time();
+            $object->attribB = 'even value';
+            $arrMock[] = $object;
+        }
+
+        $callback = function($value) {
+            return $value->attribB === 'even value';
+        };
+
+        $result = IterableUtils::inAll($arrMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return true if the value exists in all elements of array');
+    }
+
+    public function testReturnFalseIfTheValueNotExistsInAllElementsOfArrayAccordingCallbackConditions()
+    {
+        $exepected = false;
+        $arrMock = [];
+        for ($i = 0; $i < 5; $i++) {
+            $object = new \stdClass();
+            $object->attribA = time();
+            $object->attribB = 'even value';
+            $arrMock[] = $object;
+        }
+
+        $callback = function($value) {
+            return $value->attribA === 'not exists in attribute A';
+        };
+
+        $result = IterableUtils::inAll($arrMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return false if the value not exists in all elements of array');
+    }
 }
