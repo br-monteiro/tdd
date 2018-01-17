@@ -41,14 +41,14 @@ class IterableUtils
 
     public static function only(array $arr, callable $callback): bool
     {
-        $arrResult = [];
+        $arrLength = 0;
 
         foreach ($arr as $index => $value) {
             if ($callback($value, $index) === true) {
-                $arrResult[] = $index;
+                $arrLength++;
             }
         }
 
-        return count($arrResult) === 1;
+        return $arrLength === 1;
     }
 }
