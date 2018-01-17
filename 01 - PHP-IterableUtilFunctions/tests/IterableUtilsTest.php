@@ -293,4 +293,68 @@ class IterabkeUtilsTest extends PHPUnit
 
         $this->assertEquals($exepected, $result, 'It should be return false if the value not exists in all elements of array');
     }
+
+    public function testSmokeTestForLastMethod()
+    {
+        $this->assertEquals(true, method_exists(IterableUtils::class, 'last'), 'It should be return true if the last method exists');
+    }
+
+    public function testReturnTheLastValueFound()
+    {
+        $exepected = ['B', 4];
+        $arrMock = [
+            ['A', 1],
+            ['B', 2],
+            ['C', 3],
+            ['B', 4]
+        ];
+
+        $callback = function($value) {
+            return $value[0] === 'B';
+        };
+
+        $result = IterableUtils::last($arrMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return ["B", 4] if this is the last element found');
+    }
+
+    public function testReturnNullIfTheElementIsNotFound()
+    {
+        $exepected = null;
+
+        $callback = function($value) {
+            return $value === 'No Have';
+        };
+
+        $result = IterableUtils::last($this->arrayLettersMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return null if the element is not found');
+    }
+
+    public function testReturnNullWhenEmptyArrayIsPassedByParameter()
+    {
+        $exepected = null;
+        $arrMock = [];
+
+        $callback = function($value) {
+            return $value === 'test';
+        };
+
+        $result = IterableUtils::last($arrMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return null when an empty array is passed by parameter');
+    }
+
+    public function testReturnNullWhenTheCallbackNoHaveReturn()
+    {
+        $exepected = null;
+
+        $callback = function($value) {
+            // no have return
+        };
+
+        $result = IterableUtils::last($this->arrayNumbersMock, $callback);
+
+        $this->assertEquals($exepected, $result, 'It should be return null when the callback no have return');
+    }
 }
