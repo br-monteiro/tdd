@@ -224,7 +224,7 @@ class IterabkeUtilsTest extends PHPUnit
 
     public function testSmokeTestForInAllMethod()
     {
-        $this->assertEquals(true, method_exists(IterableUtils::class, 'inAll'), 'It should be return true if the inAll method exists');
+        $this->assertEquals(true, method_exists(IterableUtils::class, 'even'), 'It should be return true if the even method exists');
     }
 
     public function testReturnFalseWhenAnEmptyArrayIsPassedByParameter()
@@ -236,7 +236,7 @@ class IterabkeUtilsTest extends PHPUnit
             return $value === 'test';
         };
 
-        $result = IterableUtils::inAll($arrMock, $callback);
+        $result = IterableUtils::even($arrMock, $callback);
 
         $this->assertEquals($exepected, $result, 'It should be return false when an empty array is passed by parameter');
     }
@@ -249,7 +249,7 @@ class IterabkeUtilsTest extends PHPUnit
             // no have return
         };
 
-        $result = IterableUtils::inAll($this->arrayNumbersMock, $callback);
+        $result = IterableUtils::even($this->arrayNumbersMock, $callback);
 
         $this->assertEquals($exepected, $result, 'It should be return false when the callback no have return');
     }
@@ -269,7 +269,7 @@ class IterabkeUtilsTest extends PHPUnit
             return $value->attribB === 'even value';
         };
 
-        $result = IterableUtils::inAll($arrMock, $callback);
+        $result = IterableUtils::even($arrMock, $callback);
 
         $this->assertEquals($exepected, $result, 'It should be return true if the value exists in all elements of array');
     }
@@ -289,7 +289,7 @@ class IterabkeUtilsTest extends PHPUnit
             return $value->attribA === 'not exists in attribute A';
         };
 
-        $result = IterableUtils::inAll($arrMock, $callback);
+        $result = IterableUtils::even($arrMock, $callback);
 
         $this->assertEquals($exepected, $result, 'It should be return false if the value not exists in all elements of array');
     }

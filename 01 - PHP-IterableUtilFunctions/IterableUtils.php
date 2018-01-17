@@ -52,7 +52,7 @@ class IterableUtils
         return $arrLength === 1;
     }
 
-    public static function inAll(array $arr, callable $callback): bool
+    public static function even(array $arr, callable $callback): bool
     {
         $arrLength = 0;
         $arrParamLength = count($arr);
