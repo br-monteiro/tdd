@@ -51,4 +51,21 @@ class IterableUtils
 
         return $arrLength === 1;
     }
+
+    public static function inAll(array $arr, callable $callback): bool
+    {
+        $arrLength = 0;
+        $arrParamLength = count($arr);
+        if ($arrParamLength === 0) {
+            return false;
+        }
+
+        foreach ($arr as $index => $value) {
+            if ($callback($value, $index) === true) {
+                $arrLength++;
+            }
+        }
+
+        return $arrLength === $arrParamLength;
+    }
 }
