@@ -68,4 +68,17 @@ class IterableUtils
 
         return $arrLength === $arrParamLength;
     }
+
+    public static function last(array $arr, callable $callback)
+    {
+        $result = null;
+
+        foreach ($arr as $index => $value) {
+            if ($callback($value, $index) === true) {
+                $result = $value;
+            }
+        }
+
+        return $result;
+    }
 }
