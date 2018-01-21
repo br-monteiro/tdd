@@ -4,7 +4,7 @@ require_once 'IterableUtils.php';
 use PHPUnit\Framework\TestCase as PHPUnit;
 use App\Utils\IterableUtils;
 
-class IterabkeUtilsTest extends PHPUnit
+class IterableUtilsTest extends PHPUnit
 {
 
     protected $arrayNumbersMock = [];

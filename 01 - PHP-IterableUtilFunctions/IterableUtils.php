@@ -94,7 +94,7 @@ class IterableUtils
         }
 
         foreach ($arr as $index => $value) {
-            if ($callback($value, $index) !== true) {
+            if ($callback($value, $index) !== true) { // false, 0 or null
                 return false;
             }
         }
