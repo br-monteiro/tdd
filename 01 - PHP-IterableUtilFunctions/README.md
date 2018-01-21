@@ -146,7 +146,7 @@ Esta função deve retornar o elemento atual do array se a condição passada po
 
 __retorno__
 
-Retorna um elemento do array, se a condição do callback for satisfeita.
+Retorna um elemento do array, se a condição do callback for satisfeita ou __null__ se nenhum elemento for encontrado.
 
 __Exemplo__
 
@@ -181,7 +181,7 @@ array(2) {
 
 ### Método filter
 
-O método filter(...) é usado nos casos onde precisamos filtrar os elementos de uma array de acordo com o callback passado como parâmetro. Abaixo é possível observar algumas formas de uso do método find.
+O método filter(...) é usado nos casos onde precisamos filtrar os elementos de uma array de acordo com o callback passado como parâmetro. Abaixo é possível observar algumas formas de uso do método filter.
 
 __Sintaxe:__
 
@@ -450,7 +450,7 @@ Esta função deve retornar o elemento atual do array se a condição passada po
 
 __retorno__
 
-Retorna um elemento do array, se a condição do callback for satisfeita.
+Retorna um elemento do array, se a condição do callback for satisfeita ou __null__ se nenhum elemento for encontrado.
 
 __Exemplo__
 
