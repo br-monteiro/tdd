@@ -89,19 +89,17 @@ class IterableUtils
      */
     public static function even(array $arr, callable $callback): bool
     {
-        $arrLength = 0;
-        $arrParamLength = count($arr);
-        if ($arrParamLength === 0) {
+        if (count($arr) === 0) {
             return false;
         }
 
         foreach ($arr as $index => $value) {
-            if ($callback($value, $index) === true) {
-                $arrLength++;
+            if ($callback($value, $index) !== true) {
+                return false;
             }
         }
 
-        return $arrLength === $arrParamLength;
+        return true;
     }
 
     /**
