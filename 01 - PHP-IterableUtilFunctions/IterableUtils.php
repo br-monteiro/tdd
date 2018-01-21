@@ -111,14 +111,21 @@ class IterableUtils
      */
     public static function last(array $arr, callable $callback)
     {
-        $result = null;
+        $arrLength = count($arr);
 
-        foreach ($arr as $index => $value) {
-            if ($callback($value, $index) === true) {
-                $result = $value;
-            }
+        if ($arrLength === 0) {
+            return null;
         }
 
-        return $result;
+        $index = $arrLength - 1;
+
+        while($index >= 0) {
+            if ($callback($arr[$index], $index) === true) {
+                return $arr[$index];
+            }
+            $index--;
+        }
+
+        return null;
     }
 }
